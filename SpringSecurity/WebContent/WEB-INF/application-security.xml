@@ -1,0 +1,49 @@
+<beans:beans xmlns="http://www.springframework.org/schema/security"
+	xmlns:beans="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/mvc 
+        http://www.springframework.org/schema/mvc/spring-mvc.xsd
+        http://www.springframework.org/schema/context 
+        http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/security
+		http://www.springframework.org/schema/security/spring-security.xsd">
+
+	<beans:import resource="hibernateContext.xml" />
+	<context:component-scan base-package="org.mainlogic.spring.security.custom" />
+
+	<http auto-config="true">
+		<intercept-url pattern="/resources/**" access="permitAll" />
+		<intercept-url pattern="/login" access="permitAll" />
+		<intercept-url pattern="/**" access="isAuthenticated()" />
+		<form-login login-page="/login" default-target-url="/home"
+			authentication-failure-url="/login?error" username-parameter="userName"
+			password-parameter="password" />
+		<logout logout-success-url="/login?logout" delete-cookies="JSESSIONID"
+			invalidate-session="true" logout-url="/logout" />
+		<session-management invalid-session-url="/sessionexpired.jsp" />
+		<remember-me remember-me-parameter="rememberMe"
+			remember-me-cookie="remember_me" />
+		<csrf />
+	</http>
+
+	<authentication-manager>
+		<ldap-authentication-provider
+			user-search-base="dc=example,dc=com" user-search-filter="(uid={0})">
+			<!-- group-search-base="ou=groups" group-search-filter="(member={0})"> -->
+			<!-- <password-compare hash="sha" password-attribute="userPassword"/> -->
+		</ldap-authentication-provider>
+	</authentication-manager>
+
+	<ldap-server url="ldap://127.0.0.1:10389"
+		manager-dn="uid=admin,ou=system" manager-password="secret"/>
+		
+	<ldap-user-service user-details-class="person" 
+		user-search-base="dc=example,dc=com" user-search-filter="(uid={0})"/>
+		
+	<beans:bean id="filterChainX"
+		class="com.mainlogic.spring.security.util.FilterChainProxyExtended">
+	</beans:bean>
+</beans:beans>

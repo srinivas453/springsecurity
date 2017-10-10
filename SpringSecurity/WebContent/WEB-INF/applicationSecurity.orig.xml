@@ -1,0 +1,82 @@
+<beans:beans 
+	xmlns="http://www.springframework.org/schema/security"
+	xmlns:beans="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/mvc 
+        http://www.springframework.org/schema/mvc/spring-mvc.xsd
+        http://www.springframework.org/schema/context 
+        http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/security
+		http://www.springframework.org/schema/security/spring-security.xsd">
+
+	<beans:import resource="hibernateContext.xml" />
+	<context:component-scan base-package="org.mainlogic.spring.security.custom" />
+
+	<http auto-config="true">
+		<intercept-url pattern="/resources/**" access="permitAll" />
+		<intercept-url pattern="/login" access="permitAll" />
+		<intercept-url pattern="/**" access="isAuthenticated()" />
+		<form-login login-page="/login" default-target-url="/home"
+			authentication-failure-url="/login?error" username-parameter="userName"
+			password-parameter="password" />
+		<logout logout-success-url="/login?logout" delete-cookies="JSESSIONID"
+			invalidate-session="true" logout-url="/logout" />
+		<session-management invalid-session-url="/sessionexpired.jsp" />
+		<remember-me remember-me-parameter="rememberMe" remember-me-cookie="remember_me" />
+		<csrf />
+	</http>
+
+	<!-- <authentication-manager> <authentication-provider> <user-service> <user 
+		name="test" password="test" authorities="ROLE_USER" /> </user-service> </authentication-provider> 
+		</authentication-manager> -->
+
+	<authentication-manager>
+		<!-- <authentication-provider ref="applicationAuthenticationProvider"> -->
+			<!-- <jdbc-user-service data-source-ref="dataSource" users-by-username-query="select 
+				&quot;USER_NAME&quot;, &quot;PASSWD&quot;, &quot;ACTIVE&quot; from USR where 
+				&quot;USER_NAME&quot; = ?" authorities-by-username-query="select username, 
+				role from usr_role where username = ?"/> -->
+			<!-- <password-encoder hash="sha-256" /> <user-service> <user name="spring" 
+				password="9f86d081884c7d659a2feaa0c55ad015a3bf4f1b2b0b822cd15d6c15b0f00a08" 
+				authorities="ROLE_USER, ROLE_ADMIN" /> <user name="user" password="b3a8e0e1f9ab1bfe3a36f231f676f78bb30a519d2b21e6c530c0eee8ebb4a5d0" 
+				authorities="ROLE_USER" /> </user-service> -->
+		<!-- </authentication-provider> -->
+	    <ldap-authentication-provider
+	      user-search-base="ou=people"
+	      user-search-filter="(uid={0})">
+	      <password-compare hash="sha" password-attribute="userPassword"/>
+	    </ldap-authentication-provider>
+	</authentication-manager>
+	<!-- 	      group-search-base="ou=groups"
+	      group-search-filter="(member={0})"> -->
+	<ldap-server id="contextSource" url="ldap://127.0.0.1:10389" manager-dn="admin" manager-password="secret" root="dc=example,dc=com"/>
+	<ldap-user-service server-ref="contextSource" user-details-class="person" user-search-base="ou=people" user-search-filter="(uid={0})" />
+
+
+	<beans:bean id="applicationAuthenticationProvider"
+		class="org.mainlogic.spring.security.custom.ApplicationAuthenticationProvider">
+		<beans:property name="applicationUserDetailsService"
+			ref="applicationUserDetailsService"></beans:property>
+	</beans:bean>
+	<beans:bean id="applicationUserDetailsService"
+		class="org.mainlogic.spring.security.custom.ApplicationUserDetailsService">
+		<beans:property name="applicationUserDao" ref="applicationUserDao"></beans:property>
+	</beans:bean>
+
+	<beans:bean id="applicationUserDao"
+		class="org.mainlogic.spring.security.custom.ApplicationUserDao">
+		<beans:property name="sessionFactory" ref="sessionFactory"></beans:property>
+	</beans:bean>
+
+	<!-- CREATE TABLE users ( username VARCHAR(45) NOT NULL , password VARCHAR(45) 
+		NOT NULL , enabled TINYINT NOT NULL DEFAULT 1 , PRIMARY KEY (username)); 
+		CREATE TABLE user_roles ( user_role_id int(11) NOT NULL AUTO_INCREMENT, username 
+		varchar(45) NOT NULL, role varchar(45) NOT NULL, PRIMARY KEY (user_role_id), 
+		UNIQUE KEY uni_username_role (role,username), KEY fk_username_idx (username), 
+		CONSTRAINT fk_username FOREIGN KEY (username) REFERENCES users (username)); -->
+
+</beans:beans>

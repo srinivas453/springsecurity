@@ -1,0 +1,365 @@
+.base-container {
+	    margin-top: 30px;
+}
+
+/* Common styles */
+.instructions {
+	font-style: italic;
+}
+
+.contentBody {
+	padding: 5px;
+}
+
+.contentBody form {
+	width: 100%;
+}
+
+.icon-notice {
+	margin-top: auto;
+	margin-bottom: auto;
+	margin-right: 10px;
+}
+
+.icon-well {
+	font-size: 200%;
+	margin-right: 10px;
+	float: left;
+	padding-right: 40px;
+	vertical-align: middle;
+}
+
+.icon-error {
+	color: red;
+}
+
+.icon-warning {
+	color: yellow;
+}
+
+.portlet {
+	min-height: 200px;
+}
+
+div.selectonemenu-fix {
+	margin-left: -15px;
+	margin-right: 15px;
+}
+
+div.link-fix {
+	margin-left: -15px;
+	margin-right: 15px;
+	margin-top: 7px;
+	display: inline-block;
+}
+
+.portal-datalist {
+	border: none ! important;
+	margin-top: 10px;
+}
+
+/* Fix links embedded as fields */
+.embedded-link {
+	margin-top: 7px;
+	margin-left: -15px;
+	margin-right: 15px;
+}
+
+.button-group-in-tab {
+	margin-top: 15px;
+}
+
+.button-group-centered {
+	text-align: center;
+}
+
+/* Force a second ol breadcrumb item - in combination with pull-right */
+.second-breadcrumb {
+	margin-top: -58px;
+	list-style: none outside none;
+	background-color: none ! important;
+	margin-bottom: 20px;
+	padding: 8px 15px;
+}
+
+.breadcrumb-select {
+	margin-top: -56px !important;
+	padding: 0 15px !important;
+}
+
+.breadcrumb-checkbox {
+	background-color: none;
+}
+
+.breadcrumb-checkbox .ui-chkbox-label {
+	margin: 0 0 0 3px;
+}
+
+/* Breadcrumbs within a tab*/
+.tab-panel-breadcrumb {
+	margin-left: -22px;
+	margin-right: -22px;
+	margin-top: -16px;
+}
+
+/* Box model for download links */
+div.table-cell-inline-icon {
+	display: inline;
+	margin-right: 4px;
+}
+
+/* AJAX Status Widget */
+.throbber {
+	margin-right: 10px;
+	margin-top: -10px;
+}
+
+/* Header styles */
+.navbar {
+	border-radius: 0px !important;
+	margin-bottom: 0px !important;
+}
+
+.navbar-inverse {
+    background-color: #003a5d !important;
+    border-color: #003A5D !important;
+}
+
+.navbar-brand {
+    height: 90px !important;
+}
+
+.breadcrumb {
+	background-color: #f0f0f0 !important;
+}
+
+.breadcrumb .glyphicon {
+	margin-right: 5px;
+}
+
+.badge-breadcrumb {
+	margin-left: 5px;
+}
+
+.list-editor {
+	margin-top: 40px;
+}
+
+.field-help {
+	display: inline;
+	color: #999999;
+	margin-top: 4px;
+}
+
+.calendar-widget-fix {
+	margin-left: -15px;
+	margin-right: 15px;
+	padding-left: 15px;
+}
+
+.calendar-widget-fix input {
+	padding-left: 15px;
+}
+
+.ui-messages-error,.ui-message-error {
+	display: inline-block;
+}
+
+.ui-state-disabled,.ui-widget-content .ui-state-disabled,.ui-widget-header .ui-state-disabled
+	{
+	opacity: 0.65;
+}
+
+.ui-growl-item-container {
+	opacity: 0.95;
+}
+
+input:not     ([type=submit]     ):focus {
+	background: #FAFAD2 ! important;
+}
+
+/* Basic search form styles */
+.checkbox-fix {
+	padding-left: 0px !important;
+}
+
+.checkbox-fix div.checkbox {
+	padding-left: 0px;
+}
+
+.ui-selectonemenu .ui-selectonemenu-trigger {
+	padding: 0;
+}
+
+input:not  ([type=submit]  ):focus {
+	background: #FAFAD2;
+}
+
+/* select radio Defaults */
+.ui-selectoneradio .ui-selectoneradio-label  {
+	    margin-right:  20px;
+	    margin-right:  8px;
+}
+
+/* fieldset Defaults */
+.ui-fieldset-legend {
+	margin-bottom: 20px;
+	width: 30%;
+	font-size: 15px;
+	font-weight: bold;
+}
+
+.ui-table-header-align-right{
+	text-align: right;
+}
+
+/* data table search defaults */
+.ui-datatable .ui-column-filter {
+	width: 100%;
+}
+
+/* Dialog title */
+.ui-dialog.ui-widget-content .ui-dialog-titlebar {
+	background-color: #eeeeee;
+}
+
+.ui-dialog.ui-widget-content .ui-dialog-title {
+	font-size: 12pt;
+}
+
+.ui-dialog.ui-widget-content .ui-dialog-titlebar-close {
+	margin-top: 6px;
+}
+
+.ui-picklist-item td:first-child {
+	width: 22px;
+}
+
+div.alert {
+	min-height: 60px;
+}
+
+.bs-callout {
+	border-left: 3px solid #999999;
+	background-color: #F5F5F5;
+	margin: 30px 0;
+	padding: 20px;
+	border-radius: 3px;
+}
+
+.bs-callout h4 {
+	margin-bottom: 5px;
+	margin-top: 0;
+}
+
+.bs-callout .ui-widget-content {
+	background-color: inherit !important;
+}
+
+.bs-callout p:last-child {
+	margin-bottom: 0;
+}
+
+.bs-callout code {
+	background-color: #FFFFFF;
+	border-radius: 3px;
+}
+
+.bs-callout-green {
+	background-color: #FDF7F7;
+	border-color: #A7D603;
+}
+
+.bs-callout-green h4 {
+	color: #A7D603;
+}
+
+.bs-callout-purple {
+	background-color: #F5F5F5;
+	border-color: #9A27A0;
+}
+
+.bs-callout-purple h4 {
+	color: #9A27A0;
+}
+
+.bs-callout-purple a, .bs-callout-purple a:visited, .bs-callout-purple a:hover {
+	color: #9A27A0;
+}
+
+.bs-callout-rust {
+	background-color: #FCF8F2;
+	border-color: #F75822;
+}
+
+.bs-callout-rust h4 {
+	color: #F75822;
+}
+
+.bs-callout-rust a,.bs-callout-rust a:visited,.bs-callout-rust a:hover {
+	color: #F75822;
+}
+
+.bs-callout-blue {
+	background-color: #F4F8FA;
+	border-color: #04c5cc;
+}
+
+.bs-callout-blue h4 {
+	color: #5BC0DE;
+}
+
+.bs-callout-blue a,.bs-callout-blue a:visited,.bs-callout-blue a:hover {
+	color: #5BC0DE;
+}
+
+.ui-datatable table {
+   table-layout: auto !important;
+}
+
+.hide-column-names table thead tr {
+    display: none;
+}
+
+.embedded-table {
+	padding-left: 0px!important;
+}
+
+.ui-state-disabled-embedded {
+	background-color: inherit !important;	
+}
+
+fieldset.embedded {
+	padding: 0.6em 0.0em;
+}
+
+/*
+*Overrides for Jquery UI
+*/
+
+.ui-datepicker {
+    width: 15em;
+}
+
+.ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default {
+    border: 1px solid #ffffff;
+    background: #ffffff;
+    border-radius: 3px;
+}
+
+.ui-state-active, .ui-widget-content .ui-state-active, .ui-widget-header .ui-state-active {
+	background-color: #3071a9;
+    border-color: #285e8e;
+     color: #ffffff;
+}
+
+.ui-state-highlight, .ui-widget-content .ui-state-highlight, .ui-widget-header .ui-state-highlight {
+    border: 1px solid #ccc;
+    background: #f5f5f5;
+    color: #400040;
+}
+
+.alert-sm{
+	padding: 10px !important;
+	min-height:20px !important;
+}
